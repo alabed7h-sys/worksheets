@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أوراق عمل تفاعلية - إعداد المعلمة: أفراح المزعل</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #12372A;
+      --primary-light: #1e523f;
+      --accent: #D4AF37;
+      --accent-light: #fbf5e6;
+      --bg: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --text: #2D3748;
+      --text-muted: #64748B;
+      --correct: #166534;
+      --correct-bg: #dcfce7;
+      --wrong: #991b1b;
+      --wrong-bg: #fee2e2;
+      --border: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* Hero Section */
+    .hero-banner {
+      background: linear-gradient(135deg, #0b221a 0%, #12372A 50%, #1e523f 100%);
+      color: white;
+      text-align: center;
+      padding: 55px 20px 40px 20px;
+      border-bottom: 5px solid var(--accent);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #e2e8f0;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-teacher {
+      display: inline-block;
+      background: var(--accent);
+      color: #0b221a;
+      padding: 8px 24px;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Top Sticky Navigation Bar */
+    .nav-bar {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .top-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      align-items: center;
+    }
+
+    .stat-badge {
+      background: #edf2f7;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-badge.score {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: #855d00;
+    }
+
+    .gender-switch {
+      display: flex;
+      background: #edf2f7;
+      padding: 3px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+
+    .gender-switch button {
+      border: none;
+      background: none;
+      padding: 5px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .gender-switch button.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      border: 1px solid var(--border);
+    }
+
+    /* Screen Visibility */
+    .screen {
+      display: none;
+    }
+    .screen.active {
+      display: block;
+    }
+
+    /* Welcome Box */
+    .login-box {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      margin: 15px 0;
+      outline: none;
+      transition: all 0.2s;
+      text-align: center;
+    }
+
+    .input-field:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(30, 82, 63, 0.15);
+    }
+
+    .gender-select-box {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .gender-radio-card {
+      border: 2px solid var(--border);
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .gender-radio-card.active {
+      border-color: var(--primary);
+      background: #f0fdf4;
+      color: var(--primary);
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 13px 26px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-gold {
+      background: var(--accent);
+      color: #0b221a;
+      font-weight: 800;
+    }
+    .btn-gold:hover {
+      background: #c39e2e;
+    }
+
+    /* Lesson Grid */
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .lesson-card {
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      cursor: pointer;
+      transition: all 0.25s;
+      background: #fafafa;
+    }
+
+    .lesson-card:hover {
+      border-color: var(--primary);
+      background: #f0fdf4;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .lesson-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: inline-block;
+      background: rgba(18, 55, 42, 0.08);
+      padding: 3px 10px;
+      border-radius: 6px;
+    }
+
+    /* Question UI */
+    .question-block {
+      margin-bottom: 30px;
+      padding-bottom: 24px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .question-block:last-child {
+      border-bottom: none;
+    }
+
+    .q-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .q-badge.mcq { background: #e0f2fe; color: #0369a1; }
+    .q-badge.essay { background: #fef3c7; color: #92400e; }
+
+    .question-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    /* MCQ */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      padding: 12px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+      text-align: right;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    .option-btn.selected-correct {
+      background-color: var(--correct-bg) !important;
+      border-color: var(--correct) !important;
+      color: var(--correct);
+      font-weight: bold;
+    }
+
+    .option-btn.selected-wrong {
+      background-color: var(--wrong-bg) !important;
+      border-color: var(--wrong) !important;
+      color: var(--wrong);
+      font-weight: bold;
+    }
+
+    /* Essay Question Styles */
+    .essay-textarea {
+      width: 100%;
+      height: 90px;
+      padding: 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+      outline: none;
+      resize: vertical;
+    }
+    .essay-textarea:focus {
+      border-color: var(--primary-light);
+    }
+
+    .essay-model-ans {
+      margin-top: 10px;
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-right: 4px solid var(--primary);
+      border-radius: 4px;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .feedback-msg {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    .actions-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    /* Certificate Styling */
+    .certificate-wrapper {
+      padding: 40px 30px;
+      border: 10px double var(--accent);
+      border-radius: 16px;
+      text-align: center;
+      background: #fffdfa;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    .cert-title {
+      font-size: 2.2rem;
+      color: var(--primary);
+      font-weight: 900;
+      margin: 10px 0;
+    }
+
+    .cert-student-name {
+      font-size: 2rem;
+      color: #92400e;
+      font-weight: 800;
+      margin: 18px 0;
+      border-bottom: 2px dashed var(--accent);
+      display: inline-block;
+      padding: 0 35px;
+    }
+
+    .cert-meta-box {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 20px;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #certificate-area, #certificate-area * {
+        visibility: visible;
+      }
+      #certificate-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border: 5px solid var(--accent);
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Header -->
+  <div class="hero-banner">
+    <div class="hero-badge">منصة التعلم التفاعلي الإلكتروني</div>
+    <h1 class="hero-title">أوراق عمل تفاعلية</h1>
+    <h2 class="hero-subtitle">مادة التربية الإسلامية - الصف السادس - الفصل الدراسي الأول</h2>
+    <div class="hero-teacher">إعداد المعلمة: أفراح المزعل</div>
+  </div>
+
+  <!-- Top Navigation Bar -->
+  <div class="nav-bar">
+    <div class="top-stats">
+      <div class="stat-badge"><span id="lbl-student-type">المتعلم</span>: <span id="display-student-name">زائر</span></div>
+      <div class="stat-badge score">مجموع النقاط: <span id="total-score">0</span> 🏆</div>
+      
+      <!-- Gender Switcher in Nav -->
+      <div class="gender-switch">
+        <button id="nav-btn-male" class="active" onclick="switchGender('male')">نسخة الطلاب 👨‍🎓</button>
+        <button id="nav-btn-female" onclick="switchGender('female')">نسخة الطالبات 👩‍🎓</button>
+      </div>
+    </div>
+
+    <div id="nav-btn-container" style="display: none;">
+      <button class="btn btn-secondary" onclick="showDashboard()">فهرس الأوراق 📋</button>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Screen 1: Welcome & Gender Selection -->
+    <div id="screen-login" class="screen active card login-box">
+      <h2 id="welcome-title">مرحباً بك يا بطل المستقبل 🌟</h2>
+      <p style="color: var(--text-muted); margin-top: 8px;">
+        اختر النسخة المناسبة واكتب اسمك الثلاثي لتبدأ بحل الأوراق التفاعلية وتتلقى شهادتك المعتمدة:
+      </p>
+
+      <div class="gender-select-box" style="margin-top: 15px;">
+        <div id="radio-male" class="gender-radio-card active" onclick="setInitialGender('male')">
+          <span>👨‍🎓 نسخة الطلاب</span>
+        </div>
+        <div id="radio-female" class="gender-radio-card" onclick="setInitialGender('female')">
+          <span>👩‍🎓 نسخة الطالبات</span>
+        </div>
+      </div>
+
+      <input type="text" id="student-name-input" class="input-field" placeholder="اكتب الاسم الثلاثي هنا..." autocomplete="off">
+      <button class="btn" style="width: 100%;" onclick="startLearning()">الانطلاق وبدء أوراق العمل 🚀</button>
+    </div>
+
+    <!-- Screen 2: Dashboard -->
+    <div id="screen-dashboard" class="screen card">
+      <h2 id="dash-title">فهرس أوراق العمل التفاعلية</h2>
+      <p id="dash-desc" style="color: var(--text-muted); margin-bottom: 12px;">اختر ورقة العمل التي تريد حلها:</p>
+      
+      <div class="lesson-grid" id="lesson-grid-items"></div>
+    </div>
+
+    <!-- Screen 3: Interactive Worksheet -->
+    <div id="screen-worksheet" class="screen card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 14px;">
+        <div>
+          <span id="ws-category" class="lesson-tag"></span>
+          <h2 id="ws-title" style="margin-top: 4px;"></h2>
+        </div>
+        <button class="btn btn-secondary" onclick="showDashboard()">العودة للفهرس 📋</button>
+      </div>
+
+      <div id="questions-container"></div>
+
+      <div class="actions-bar">
+        <button id="next-lesson-btn" class="btn" onclick="nextWorksheet()">الانتقال للورقة التالية ⬅️</button>
+        <button class="btn btn-gold" onclick="showCertificate()">عرض شهادة إنجازي 🎓</button>
+      </div>
+    </div>
+
+    <!-- Screen 4: Certificate -->
+    <div id="screen-certificate" class="screen card">
+      <div id="certificate-area" class="certificate-wrapper">
+        <h4 style="color: var(--text-muted); letter-spacing: 2px;">دولة الكويت - وزارة التربية</h4>
+        <h1 class="cert-title">شهادة تفوق وإنجاز</h1>
+        <p style="font-size: 1.15rem; margin-top: 8px;" id="cert-intro">تشهد منصة التربية الإسلامية بأن المتعلم المتميز:</p>
+        
+        <div class="cert-student-name" id="cert-name">اسم الطالب</div>
+        
+        <p style="font-size: 1.2rem; max-width: 650px; margin: 0 auto; line-height: 1.8;" id="cert-body">
+          قد أتم بنجاح وكفاءة حل أوراق العمل التفاعلية المعتمدة في منهج <strong>التربية الإسلامية (الصف السادس - الفصل الدراسي الأول)</strong> 
+          واستحق هذه الشهادة تقديراً لاجتهاده وتفوقه.
+        </p>
+        
+        <div style="margin: 22px 0; font-size: 1.5rem; font-weight: 800; color: var(--primary);">
+          مجموع النقاط المكتسبة: <span id="cert-score">0</span> نقطة 🌟
+        </div>
+
+        <div class="cert-meta-box">
+          <div><strong>معلمة المادة:</strong> أ. أفراح المزعل</div>
+          <div id="cert-date"></div>
+        </div>
+      </div>
+
+      <div class="actions-bar no-print" style="margin-top: 25px;">
+        <button class="btn btn-secondary" onclick="showDashboard()">العودة لأوراق العمل</button>
+        <button class="btn" onclick="window.print()">طباعة / حفظ الشهادة PDF 🖨️</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Dual Gender Curriculum Data (Kuwait Grade 6 Islamic Education)
+    const curriculumData = [
+      {
+        id: "lesson-1",
+        category: "مجال العقيدة",
+        title: "الورقة الأولى: الإيمان بالله تعالى",
+        questions: [
+          {
+            type: "mcq",
+            q_male: "ما هو الأصل الأول من أصول العقيدة وأهمها وعليه مدار الإسلام؟",
+            q_female: "ما هو الأصل الأول من أصول العقيدة وأهمها وعليه مدار الإسلام؟",
+            options_male: ["الإيمان بالله تعالى", "الإيمان بالكتب السماوية", "الإيمان باليوم الآخر"],
+            options_female: ["الإيمان بالله تعالى", "الإيمان بالكتب السماوية", "الإيمان باليوم الآخر"],
+            correct: 0,
+            note: "الإيمان بالله تعالى هو الأصل الأول من أصول العقيدة وأهمها."
+          },
+          {
+            type: "mcq",
+            q_male: "استدلال الإنسان بوجود المصنوعات العظيمة في الكون على وجود صانع خبير يُعد دليلاً:",
+            q_female: "استدلال الإنسان بوجود المصنوعات العظيمة في الكون على وجود صانع خبير يُعد دليلاً:",
+            options_male: ["فطرياً", "عقلياً", "تاريخياً"],
+            options_female: ["فطرياً", "عقلياً", "تاريخياً"],
+            correct: 1,
+            note: "دليل العقل يثبت استحالة وجود المخلوقات والكون البديع دون خالق عظيم."
+          },
+          {
+            type: "essay",
+            q_male: "علل: استحقاق الله -تعالى- وحده للعبادة دون سواه.",
+            q_female: "عللي: استحقاق الله -تعالى- وحده للعبادة دون سواه.",
+            keywords: ["رب", "خالق", "رازق", "كمال", "مليك"],
+            modelAnswer_male: "لأنه سبحانه هو رب كل شيء وخالقه ومليكه، والمتصف بصفات الكمال المنزه عن كل عيب ونقص.",
+            modelAnswer_female: "لأنه سبحانه هو رب كل شيء وخالقه ومليكه، والمتصف بصفات الكمال المنزه عن كل عيب ونقص."
+          },
+          {
+            type: "essay",
+            q_male: "وجه نصيحة بأسلوبك لزميل يتكاسل عن أداء الصلاة وطاعة الله.",
+            q_female: "وجهي نصيحة بأسلوبكِ لزميلة تتكاسل عن أداء الصلاة وطاعة الله.",
+            keywords: ["صلاة", "إيمان", "جنة", "طاعة", "الله"],
+            modelAnswer_male: "أنصحه بالمحافظة على الصلاة لأن الإيمان قول وعمل، والصلاة هي الصلة العظيمة بين العبد وربه.",
+            modelAnswer_female: "أنصحها بالمحافظة على الصلاة لأن الإيمان قول وعمل، والصلاة هي الصلة العظيمة بين العبد وربه."
+          }
+        ]
+      },
+      {
+        id: "lesson-2",
+        category: "مجال العقيدة",
+        title: "الورقة الثانية: كلمة التوحيد (لا إله إلا الله)",
+        questions: [
+          {
+            type: "mcq",
+            q_male: "كلمة التوحيد (لا إله إلا الله) تتكون من ركنين أساسيين هما:",
+            q_female: "كلمة التوحيد (لا إله إلا الله) تتكون من ركنين أساسيين هما:",
+            options_male: ["الصوم والصلاة", "النفي والإثبات", "الجهر والسر"],
+            options_female: ["الصوم والصلاة", "النفي والإثبات", "الجهر والسر"],
+            correct: 1,
+            note: "النفي: نفي الألوهية عما سوى الله، والإثبات: إثباتها لله وحده."
+          },
+          {
+            type: "mcq",
+            q_male: "ما هي أعلى شعب الإيمان كما ثبت في الحديث الشريف؟",
+            q_female: "ما هي أعلى شعب الإيمان كما ثبت في الحديث الشريف؟",
+            options_male: ["إماطة الأذى عن الطريق", "قول لا إله إلا الله", "الحياء"],
+            options_female: ["إماطة الأذى عن الطريق", "قول لا إله إلا الله", "الحياء"],
+            correct: 1,
+            note: "قال رسول الله ﷺ: «فأفضلها قول لا إله إلا الله»."
+          },
+          {
+            type: "essay",
+            q_male: "وضح معنى كلمة التوحيد (لا إله إلا الله).",
+            q_female: "وضحي معنى كلمة التوحيد (لا إله إلا الله).",
+            keywords: ["معبود", "حق", "إلا الله"],
+            modelAnswer_male: "معناها: لا معبود بحق إلا الله تعالى وحده لا شريك له.",
+            modelAnswer_female: "معناها: لا معبود بحق إلا الله تعالى وحده لا شريك له."
+          },
+          {
+            type: "essay",
+            q_male: "اذكر اثنين من شروط كلمة التوحيد (لا إله إلا الله).",
+            q_female: "اذكري اثنين من شروط كلمة التوحيد (لا إله إلا الله).",
+            keywords: ["العلم", "اليقين", "القبول", "الانقياد", "الصدق", "الإخلاص", "المحبة"],
+            modelAnswer_male: "من شروطها: العلم، اليقين، القبول، الانقياد، الصدق، الإخلاص، والمحبة.",
+            modelAnswer_female: "من شروطها: العلم، اليقين، القبول، الانقياد، الصدق، الإخلاص، والمحبة."
+          }
+        ]
+      },
+      {
+        id: "lesson-3",
+        category: "مجال الفقه",
+        title: "الورقة الثالثة: الطهارة وأقسام المياه",
+        questions: [
+          {
+            type: "mcq",
+            q_male: "ما حكم التطهر بالماء النجس؟",
+            q_female: "ما حكم التطهر بالماء النجس؟",
+            options_male: ["يصح في الضرورة", "لا يصح الوضوء به ولا يزيل النجاسة", "مكروه فقط"],
+            options_female: ["يصح في الضرورة", "لا يصح الوضوء به ولا يزيل النجاسة", "مكروه فقط"],
+            correct: 1,
+            note: "الماء النجس لا يرفع حدثاً ولا يزيل نجاسة."
+          },
+          {
+            type: "mcq",
+            q_male: "الماء الذي تغير لونه أو طعمه بمخالطة شيء طاهر (كالشاي أو الزعفران) يُسمى ماءً:",
+            q_female: "الماء الذي تغير لونه أو طعمه بمخالطة شيء طاهر (كالشاي أو الزعفران) يُسمى ماءً:",
+            options_male: ["طهوراً", "طاهراً", "نجساً"],
+            options_female: ["طهوراً", "طاهراً", "نجساً"],
+            correct: 1,
+            note: "الماء الطاهر: تغير بمخالطة طاهر، طاهر بنفسه غير مطهر لغيره."
+          },
+          {
+            type: "essay",
+            q_male: "بين الفرق بين الطهارة الحسية والطهارة المعنوية.",
+            q_female: "بيني الفرق بين الطهارة الحسية والطهارة المعنوية.",
+            keywords: ["قلب", "جوارح", "بدن", "شرك", "ذنب"],
+            modelAnswer_male: "الطهارة المعنوية: طهارة القلب من الشرك والذنوب. الطهارة الحسية: طهارة البدن والجوارح والثياب والمكان من النجاسات.",
+            modelAnswer_female: "الطهارة المعنوية: طهارة القلب من الشرك والذنوب. الطهارة الحسية: طهارة البدن والجوارح والثياب والمكان من النجاسات."
+          },
+          {
+            type: "essay",
+            q_male: "ما الحكم الشرعي إذا توضأ شخص من ماء وقعت فيه نجاسة فتغيرت رائحته؟",
+            q_female: "ما الحكم الشرعي إذا توضأت فتاة من ماء وقعت فيه نجاسة فتغيرت رائحته؟",
+            keywords: ["لا يصح", "باطل", "نجس", "لا يجوز"],
+            modelAnswer_male: "لا يصح وضوؤه؛ لأن الماء صار نجساً بتغير أحد أوصافه بمخالطة النجاسة.",
+            modelAnswer_female: "لا يصح وضوؤها؛ لأن الماء صار نجساً بتغير أحد أوصافه بمخالطة النجاسة."
+          }
+        ]
+      },
+      {
+        id: "lesson-4",
+        category: "مجال الفقه",
+        title: "الورقة الرابعة: أحكام الوضوء ونواقضه",
+        questions: [
+          {
+            type: "mcq",
+            q_male: "أي مما يلي يُعد من فرائض الوضوء الأساسية التي لا يصح إلا بها؟",
+            q_female: "أي مما يلي يُعد من فرائض الوضوء الأساسية التي لا يصح إلا بها؟",
+            options_male: ["استعمال السواك", "مسح الرأس كله ومنه الأذنان", "التسمية"],
+            options_female: ["استعمال السواك", "مسح الرأس كله ومنه الأذنان", "التسمية"],
+            correct: 1,
+            note: "مسح الرأس وغسل الوجه واليدين والرجلين والترتيب والموالاة من الفرائض."
+          },
+          {
+            type: "mcq",
+            q_male: "أي الأطعمة الآتية ينقض الوضوء عند تناوله؟",
+            q_female: "أي الأطعمة الآتية ينقض الوضوء عند تناوله؟",
+            options_male: ["لحم الإبل", "لحم الغنم", "السمك"],
+            options_female: ["لحم الإبل", "لحم الغنم", "السمك"],
+            correct: 0,
+            note: "أكل لحم الإبل من نواقض الوضوء الشرعية."
+          },
+          {
+            type: "essay",
+            q_male: "علل: أمر النبي ﷺ رجلاً رأى في قدمه بقعة لم يصبها الماء بإعادة الوضوء والصلاة.",
+            q_female: "عللي: أمر النبي ﷺ رجلاً رأى في قدمه بقعة لم يصبها الماء بإعادة الوضوء والصلاة.",
+            keywords: ["فرائض", "استيعاب", "بطلان", "إسباغ", "غسل", "صحة"],
+            modelAnswer_male: "لأن تعميم غسل أعضاء الفريضة بالماء شرط لصحة الوضوء، والصلاة لا تصح بغير طهور كامل.",
+            modelAnswer_female: "لأن تعميم غسل أعضاء الفريضة بالماء شرط لصحة الوضوء، والصلاة لا تصح بغير طهور كامل."
+          },
+          {
+            type: "essay",
+            q_male: "قدم نصيحة لزميلك إذا رأيته يسرف في استخدام الماء أثناء الوضوء.",
+            q_female: "قدمي نصيحة لزميلتكِ إذا رأيتها تسرف في استخدام الماء أثناء الوضوء.",
+            keywords: ["إسراف", "نبي", "مد", "اقتصاد", "سنة"],
+            modelAnswer_male: "أنصحه بالاقتداء بالنبي ﷺ فكان يتوضأ بالمد ولا يسرف، فالإسراف منهي عنه حتى في العبادة.",
+            modelAnswer_female: "أنصحها بالاقتداء بالنبي ﷺ فكان يتوضأ بالمد ولا يسرف، فالإسراف منهي عنه حتى في العبادة."
+          }
+        ]
+      },
+      {
+        id: "lesson-5",
+        category: "مجال السيرة النبوية",
+        title: "الورقة الخامسة: إرهاصات النبوة ومولد النبي ﷺ",
+        questions: [
+          {
+            type: "mcq",
+            q_male: "ما المقصود بـ 'الإرهاصات' في السيرة النبوية الشريفة؟",
+            q_female: "ما المقصود بـ 'الإرهاصات' في السيرة النبوية الشريفة؟",
+            options_male: ["الأمر الخارق للعادة يظهر للنبي قبل بعثته تمهيداً لنبوته", "الغزوات التي شارك بها النبي", "الأحكام بعد فتح مكة"],
+            options_female: ["الأمر الخارق للعادة يظهر للنبي قبل بعثته تمهيداً لنبوته", "الغزوات التي شارك بها النبي", "الأحكام بعد فتح مكة"],
+            correct: 0,
+            note: "الإرهاصات دلائل وبشائر خارقة للعادة سبقت البعثة."
+          },
+          {
+            type: "mcq",
+            q_male: "من هو جد النبي ﷺ الذي بنى دار الندوة للشورى؟",
+            q_female: "من هو جد النبي ﷺ الذي بنى دار الندوة للشورى؟",
+            options_male: ["هاشم بن عبد مناف", "قصي بن كلاب", "عبدالمطلب"],
+            options_female: ["هاشم بن عبد مناف", "قصي بن كلاب", "عبدالمطلب"],
+            correct: 1,
+            note: "قصي بن كلاب هو من بنى دار الندوة."
+          },
+          {
+            type: "essay",
+            q_male: "علل: تسمية عبد المطلب حفيده النبي ﷺ باسم 'محمد'.",
+            q_female: "عللي: تسمية عبد المطلب حفيده النبي ﷺ باسم 'محمد'.",
+            keywords: ["محمود", "سماء", "أرض", "حمد"],
+            modelAnswer_male: "ليكون محموداً في السماء وفي الأرض عند الله وخلقه.",
+            modelAnswer_female: "ليكون محموداً في السماء وفي الأرض عند الله وخلقه."
+          },
+          {
+            type: "essay",
+            q_male: "اذكر اثنين من الإرهاصات التي حدثت بعد ولادة النبي ﷺ.",
+            q_female: "اذكري اثنين من الإرهاصات التي حدثت بعد ولادة النبي ﷺ.",
+            keywords: ["بركة", "حليمة", "شق الصدر", "أحبار", "رهبان"],
+            modelAnswer_male: "حلول البركة على مرضعته حليمة السعدية، وحادثة شق الصدر، وكلام الرهبان عن خاتم النبوة بين كتفيه.",
+            modelAnswer_female: "حلول البركة على مرضعتها حليمة السعدية، وحادثة شق الصدر، وكلام الرهبان عن خاتم النبوة بين كتفيه."
+          }
+        ]
+      },
+      {
+        id: "lesson-6",
+        category: "مجال التهذيب",
+        title: "الورقة السادسة: خلق الحلم والعفو",
+        questions: [
+          {
+            type: "mcq",
+            q_male: "ما هو التعريف الشرعي لخلق 'الحلم'؟",
+            q_female: "ما هو التعريف الشرعي لخلق 'الحلم'؟",
+            options_male: ["كثرة النوم", "ضبط النفس وكظم الغيظ عند الغضب", "الرد بالمثل فوراً"],
+            options_female: ["كثرة النوم", "ضبط النفس وكظم الغيظ عند الغضب", "الرد بالمثل فوراً"],
+            correct: 1,
+            note: "الحلم هو ضبط النفس وكظم الغيظ والتأني."
+          },
+          {
+            type: "mcq",
+            q_male: "قول النبي ﷺ لأهل مكة: «اذهبوا فأنتم الطلقاء» يُعد مثالاً عظيماً على خُلق:",
+            q_female: "قول النبي ﷺ لأهل مكة: «اذهبوا فأنتم الطلقاء» يُعد مثالاً عظيماً على خُلق:",
+            options_male: ["العفو والتسامح", "الشجاعة فقط", "الحذر"],
+            options_female: ["العفو والتسامح", "الشجاعة فقط", "الحذر"],
+            correct: 0,
+            note: "أعظم صور العفو عند المقدرة."
+          },
+          {
+            type: "essay",
+            q_male: "كيف تتصرف وتكون حليماً إذا أرسل إليك زميل رسالة إلكترونية مسيئة؟",
+            q_female: "كيف تتصرفين وتكونين حليمة إذا أرسلت إليكِ زميلة رسالة إلكترونية مسيئة؟",
+            keywords: ["أضبط نفسي", "أعفو", "لا أرد", "أصفح", "أحلم", "أهدأ", "أنصح"],
+            modelAnswer_male: "أكظم غيظي وأضبط نفسي، ولا أقابل الإساءة بمثلها، بل أنصحه بالتي هي أحسن أو أعفو عنه طلباً لثواب الله.",
+            modelAnswer_female: "أكظم غيظي وأضبط نفسي، ولا أقابل الإساءة بمثلها، بل أنصحها بالتي هي أحسن أو أعفو عنها طلباً لثواب الله."
+          },
+          {
+            type: "essay",
+            q_male: "بين أثر انتشار خُلق العفو والتسامح بين أفراد المجتمع.",
+            q_female: "بيني أثر انتشار خُلق العفو والتسامح بين أفراد المجتمع.",
+            keywords: ["محبة", "ألفة", "مودة", "سلام", "طمأنينة", "تماسك"],
+            modelAnswer_male: "ينشر المحبة والألفة بين الأفراد، ويزيل الضغينة، ويحقق الراحة والطمأنينة في المجتمع.",
+            modelAnswer_female: "ينشر المحبة والألفة بين الأفراد، ويزيل الضغينة، ويحقق الراحة والطمأنينة في المجتمع."
+          }
+        ]
+      }
+    ];
+
+    // State Variables
+    let currentGender = 'male'; // 'male' or 'female'
+    let studentName = "";
+    let totalScore = 0;
+    let currentLessonIndex = 0;
+    let answeredQuestions = new Set();
+
+    function setInitialGender(gender) {
+      currentGender = gender;
+      document.getElementById('radio-male').classList.toggle('active', gender === 'male');
+      document.getElementById('radio-female').classList.toggle('active', gender === 'female');
+      updateNavGenderButtons();
+      updateWelcomeText();
+    }
+
+    function switchGender(gender) {
+      currentGender = gender;
+      updateNavGenderButtons();
+      document.getElementById('radio-male').classList.toggle('active', gender === 'male');
+      document.getElementById('radio-female').classList.toggle('active', gender === 'female');
+      updateWelcomeText();
+      
+      // Re-render currently viewed screen to adapt text instantly
+      if (document.getElementById('screen-worksheet').classList.contains('active')) {
+        openWorksheet(currentLessonIndex);
+      } else if (document.getElementById('screen-certificate').classList.contains('active')) {
+        showCertificate();
+      }
+    }
+
+    function updateNavGenderButtons() {
+      document.getElementById('nav-btn-male').classList.toggle('active', currentGender === 'male');
+      document.getElementById('nav-btn-female').classList.toggle('active', currentGender === 'female');
+      document.getElementById('lbl-student-type').innerText = currentGender === 'male' ? 'الطالب' : 'الطالبة';
+    }
+
+    function updateWelcomeText() {
+      const isFemale = currentGender === 'female';
+      document.getElementById('welcome-title').innerText = isFemale ? 'مرحباً بكِ يا بطلة المستقبل 🌟' : 'مرحباً بك يا بطل المستقبل 🌟';
+      document.getElementById('student-name-input').placeholder = isFemale ? 'اكتبي الاسم الثلاثي هنا...' : 'اكتب الاسم الثلاثي هنا...';
+      document.getElementById('dash-desc').innerText = isFemale ? 'عزيزتي الطالبة، اختاري ورقة العمل التي تريدين حلها:' : 'عزيزي الطالب، اختر ورقة العمل التي تريد حلها:';
+    }
+
+    function setScreen(screenId) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById(screenId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function startLearning() {
+      const name = document.getElementById('student-name-input').value.trim();
+      if (!name) {
+        alert(currentGender === 'female' ? "يرجى كتابة الاسم الثلاثي للبدء" : "يرجى كتابة الاسم الثلاثي للبدء");
+        return;
+      }
+      studentName = name;
+      document.getElementById('display-student-name').innerText = studentName;
+      document.getElementById('nav-btn-container').style.display = "block";
+      renderDashboard();
+      setScreen('screen-dashboard');
+    }
+
+    function renderDashboard() {
+      const grid = document.getElementById('lesson-grid-items');
+      grid.innerHTML = "";
+      
+      curriculumData.forEach((lesson, index) => {
+        const item = document.createElement('div');
+        item.className = "lesson-card";
+        item.onclick = () => openWorksheet(index);
+        item.innerHTML = `
+          <span class="lesson-tag">${lesson.category}</span>
+          <h3 style="font-size: 1.15rem; margin-top: 4px;">${lesson.title}</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 8px;">
+            📝 تتضمن أسئلة موضوعية ومقالية
+          </p>
+        `;
+        grid.appendChild(item);
+      });
+    }
+
+    function showDashboard() {
+      setScreen('screen-dashboard');
+    }
+
+    function openWorksheet(index) {
+      currentLessonIndex = index;
+      const lesson = curriculumData[index];
+      const isFemale = currentGender === 'female';
+      
+      document.getElementById('ws-category').innerText = lesson.category;
+      document.getElementById('ws-title').innerText = lesson.title;
+      
+      const qContainer = document.getElementById('questions-container');
+      qContainer.innerHTML = "";
+
+      lesson.questions.forEach((qItem, qIdx) => {
+        const qId = `${lesson.id}-q${qIdx}`;
+        const block = document.createElement('div');
+        block.className = "question-block";
+
+        const qTitle = isFemale ? qItem.q_female : qItem.q_male;
+
+        if (qItem.type === "mcq") {
+          const opts = isFemale ? qItem.options_female : qItem.options_male;
+          let optionsHtml = opts.map((opt, oIdx) => `
+            <button class="option-btn" id="btn-${qId}-${oIdx}" onclick="checkMcq(${index}, ${qIdx}, ${oIdx})">
+              ${opt}
+            </button>
+          `).join('');
+
+          block.innerHTML = `
+            <span class="q-badge mcq">سؤال موضوعي</span>
+            <div class="question-title">${qIdx + 1}. ${qTitle}</div>
+            <div class="options">${optionsHtml}</div>
+            <div class="feedback-msg" id="feedback-${qId}"></div>
+          `;
+        } else if (qItem.type === "essay") {
+          const modelAns = isFemale ? qItem.modelAnswer_female : qItem.modelAnswer_male;
+          const placeholderText = isFemale ? "اكتبي إجابتكِ هنا بدقة ثم اضغطي على اعتماد الإجابة..." : "اكتب إجابتك هنا بدقة ثم اضغط على اعتماد الإجابة...";
+
+          block.innerHTML = `
+            <span class="q-badge essay">سؤال مقالي وتفكير</span>
+            <div class="question-title">${qIdx + 1}. ${qTitle}</div>
+            <textarea id="input-${qId}" class="essay-textarea" placeholder="${placeholderText}"></textarea>
+            <button id="submit-${qId}" class="btn" style="padding: 8px 18px; font-size: 0.9rem;" onclick="checkEssay(${index}, ${qIdx})">اعتماد وتقييم الإجابة ✓</button>
+            <div class="feedback-msg" id="feedback-${qId}"></div>
+            <div class="essay-model-ans" id="model-${qId}">
+              <strong>الإجابة النموذجية المعتمدة:</strong> ${modelAns}
+            </div>
+          `;
+        }
+
+        qContainer.appendChild(block);
+      });
+
+      const nextBtn = document.getElementById('next-lesson-btn');
+      if (index === curriculumData.length - 1) {
+        nextBtn.style.display = "none";
+      } else {
+        nextBtn.style.display = "inline-flex";
+      }
+
+      setScreen('screen-worksheet');
+    }
+
+    function checkMcq(lessonIdx, qIdx, selectedOption) {
+      const qKey = `${lessonIdx}-${qIdx}`;
+      if (answeredQuestions.has(qKey)) return;
+
+      const qData = curriculumData[lessonIdx].questions[qIdx];
+      const qId = `${curriculumData[lessonIdx].id}-q${qIdx}`;
+      const feedback = document.getElementById(`feedback-${qId}`);
+      const isFemale = currentGender === 'female';
+      const opts = isFemale ? qData.options_female : qData.options_male;
+
+      opts.forEach((_, idx) => {
+        document.getElementById(`btn-${qId}-${idx}`).disabled = true;
+      });
+
+      if (selectedOption === qData.correct) {
+        document.getElementById(`btn-${qId}-${selectedOption}`).classList.add('selected-correct');
+        feedback.innerText = isFemale ? ` أحسنتِ يا متميزة! إجابة صحيحة. (${qData.note})` : ` أحسنت يا بطل! إجابة صحيحة. (${qData.note})`;
+        feedback.style.color = "var(--correct)";
+        totalScore += 10;
+      } else {
+        document.getElementById(`btn-${qId}-${selectedOption}`).classList.add('selected-wrong');
+        document.getElementById(`btn-${qId}-${qData.correct}`).classList.add('selected-correct');
+        feedback.innerText = ` إجابة تحتاج مراجعة. الإجابة الصحيحة هي: ${opts[qData.correct]} (${qData.note})`;
+        feedback.style.color = "var(--wrong)";
+      }
+
+      answeredQuestions.add(qKey);
+      feedback.style.display = "block";
+      updateScoreUI();
+    }
+
+    function checkEssay(lessonIdx, qIdx) {
+      const qKey = `${lessonIdx}-${qIdx}`;
+      if (answeredQuestions.has(qKey)) return;
+
+      const qData = curriculumData[lessonIdx].questions[qIdx];
+      const qId = `${curriculumData[lessonIdx].id}-q${qIdx}`;
+      const userText = document.getElementById(`input-${qId}`).value.trim();
+      const feedback = document.getElementById(`feedback-${qId}`);
+      const modelDiv = document.getElementById(`model-${qId}`);
+      const isFemale = currentGender === 'female';
+
+      if (userText.length < 4) {
+        alert(isFemale ? "يرجى كتابة إجابة مناسبة قبل الاعتماد" : "يرجى كتابة إجابة مناسبة قبل الاعتماد");
+        return;
+      }
+
+      document.getElementById(`input-${qId}`).disabled = true;
+      document.getElementById(`submit-${qId}`).disabled = true;
+
+      const hasKeywords = qData.keywords.some(word => userText.includes(word));
+
+      if (hasKeywords) {
+        feedback.innerText = isFemale ? " إجابة رائعة وموفقة! تضمنت المفاهيم الأساسية المطلوبة (+10 نقاط)." : " إجابة رائعة وموفقة! تضمنت المفاهيم الأساسية المطلوبة (+10 نقاط).";
+        feedback.style.color = "var(--correct)";
+        totalScore += 10;
+      } else {
+        feedback.innerText = isFemale ? " أحسنتِ المحاولة! قارني إجابتكِ بالإجابة النموذجية المعتمدة أدناه (+5 نقاط تقديرية)." : " أحسنت المحاولة! قارن إجابتك بالإجابة النموذجية المعتمدة أدناه (+5 نقاط تقديرية).";
+        feedback.style.color = "#92400e";
+        totalScore += 5;
+      }
+
+      answeredQuestions.add(qKey);
+      feedback.style.display = "block";
+      modelDiv.style.display = "block";
+      updateScoreUI();
+    }
+
+    function updateScoreUI() {
+      document.getElementById('total-score').innerText = totalScore;
+    }
+
+    function nextWorksheet() {
+      if (currentLessonIndex < curriculumData.length - 1) {
+        openWorksheet(currentLessonIndex + 1);
+      }
+    }
+
+    function showCertificate() {
+      const isFemale = currentGender === 'female';
+      document.getElementById('cert-intro').innerText = isFemale ? "تشهد منصة التربية الإسلامية بأن الطالبة المتميزة:" : "تشهد منصة التربية الإسلامية بأن الطالب المتميز:";
+      document.getElementById('cert-body').innerHTML = isFemale 
+        ? "قد أتمت بنجاح وكفاءة حل أوراق العمل التفاعلية المعتمدة في منهج <strong>التربية الإسلامية (الصف السادس - الفصل الدراسي الأول)</strong> واستحقت هذه الشهادة تقديراً لاجتهادها وتفوقها."
+        : "قد أتم بنجاح وكفاءة حل أوراق العمل التفاعلية المعتمدة في منهج <strong>التربية الإسلامية (الصف السادس - الفصل الدراسي الأول)</strong> واستحق هذه الشهادة تقديراً لاجتهاده وتفوقه.";
+      
+      document.getElementById('cert-name').innerText = studentName;
+      document.getElementById('cert-score').innerText = totalScore;
+      const today = new Date();
+      document.getElementById('cert-date').innerText = `حررت بتاريخ: ${today.toLocaleDateString('ar-KW', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+      setScreen('screen-certificate');
+    }
+  </script>
+</body>
+</html>
